@@ -7,6 +7,7 @@
                 "${workspaceFolder}/**"
             ],
             "windowsSdkVersion": "10.0.19041.0",
+            "intelliSenseMode": "windows-gcc-arm",
             "compilerPath": "C:/opt/gcc-arm-none-eabi/bin/arm-none-eabi-gcc.exe"
         }
     ],
