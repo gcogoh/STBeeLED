@@ -1,0 +1,14 @@
+STM32F103VBT6 Device Firmware Update
+
+This Program was suitable for GNU-GCC Commandline Build!
+Hotondo Nemuisan Senyou daYO!
+
+===!NOTICE!===
+Nemuisan uses following INTELLECTUAL PROPERTIES under each licence.
+Those sourcecode are included in this project.
+
+* STMicroelectronics CMSIS Libraries
+  STM32F10x standard peripheral library
+  STM32F10x and STM32L1xx USB full-speed device library
+  Project of DeviceFirmwareUpgrade
+  http://www.st.com/software_license_agreement_liberty_v2

@@ -1,0 +1,163 @@
+arm-none-eabi-gcc.exe (GNU Arm Embedded Toolchain 9-2020-q2-update) 9.3.1 20200408 (release)
+Copyright (C) 2019 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+rm -f main.hex
+rm -f main.bin
+rm -f main.obj
+rm -f stm32.a
+rm -f main.elf
+rm -f main.map
+rm -f main.s19
+rm -f main.obj
+rm -f main.a90
+rm -f main.sym
+rm -f main.lnk
+rm -f main.lss
+rm -f main.dfu
+rm -f 
+rm -f ./src/main.o 
+rm -f 
+rm -f ./lib/STM32F10x_StdPeriph_Driver/src/misc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.o ./lib/STM32_USB-FS-Device_Driver/src/usb_core.o ./lib/STM32_USB-FS-Device_Driver/src/usb_init.o ./lib/STM32_USB-FS-Device_Driver/src/usb_int.o ./lib/STM32_USB-FS-Device_Driver/src/usb_mem.o ./lib/STM32_USB-FS-Device_Driver/src/usb_regs.o ./lib/STM32_USB-FS-Device_Driver/src/usb_sil.o ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.o ./lib/Platform/boardinit.o ./lib/USART/src/usart_config.o ./lib/COM/src/com_config.o ./lib/UTIL/src/toascii.o ./lib/UTIL/src/remap.o ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.o
+rm -f 
+rm -f ./src/main.lst
+rm -f ./src/main.d
+rm -f ./lib/STM32F10x_StdPeriph_Driver/src/misc.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.lst ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_core.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_init.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_int.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_mem.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_regs.lst ./lib/STM32_USB-FS-Device_Driver/src/usb_sil.lst ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.lst ./lib/Platform/boardinit.lst ./lib/USART/src/usart_config.lst ./lib/COM/src/com_config.lst ./lib/UTIL/src/toascii.lst ./lib/UTIL/src/remap.lst
+rm -f ./lib/STM32F10x_StdPeriph_Driver/src/misc.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.d ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.d ./lib/STM32_USB-FS-Device_Driver/src/usb_core.d ./lib/STM32_USB-FS-Device_Driver/src/usb_init.d ./lib/STM32_USB-FS-Device_Driver/src/usb_int.d ./lib/STM32_USB-FS-Device_Driver/src/usb_mem.d ./lib/STM32_USB-FS-Device_Driver/src/usb_regs.d ./lib/STM32_USB-FS-Device_Driver/src/usb_sil.d ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.d ./lib/Platform/boardinit.d ./lib/USART/src/usart_config.d ./lib/COM/src/com_config.d ./lib/UTIL/src/toascii.d ./lib/UTIL/src/remap.d
+rm -f ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.lst
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -f 
+rm -rf .dep
+
+Compile: src/main.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=src/main.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc src/main.c -o src/main.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/misc.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/misc.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/misc.c -o lib/STM32F10x_StdPeriph_Driver/src/misc.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.o
+
+Compile: lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.c -o lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_core.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_core.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_core.c -o lib/STM32_USB-FS-Device_Driver/src/usb_core.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_init.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_init.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_init.c -o lib/STM32_USB-FS-Device_Driver/src/usb_init.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_int.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_int.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_int.c -o lib/STM32_USB-FS-Device_Driver/src/usb_int.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_mem.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_mem.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_mem.c -o lib/STM32_USB-FS-Device_Driver/src/usb_mem.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_regs.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_regs.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_regs.c -o lib/STM32_USB-FS-Device_Driver/src/usb_regs.o
+
+Compile: lib/STM32_USB-FS-Device_Driver/src/usb_sil.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/STM32_USB-FS-Device_Driver/src/usb_sil.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/STM32_USB-FS-Device_Driver/src/usb_sil.c -o lib/STM32_USB-FS-Device_Driver/src/usb_sil.o
+
+Compile: lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.c -o lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.o
+
+Compile: lib/Platform/boardinit.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/Platform/boardinit.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/Platform/boardinit.c -o lib/Platform/boardinit.o
+
+Compile: lib/USART/src/usart_config.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/USART/src/usart_config.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/USART/src/usart_config.c -o lib/USART/src/usart_config.o
+
+Compile: lib/COM/src/com_config.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/COM/src/com_config.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/COM/src/com_config.c -o lib/COM/src/com_config.o
+
+Compile: lib/UTIL/src/toascii.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/UTIL/src/toascii.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/UTIL/src/toascii.c -o lib/UTIL/src/toascii.o
+
+Compile: lib/UTIL/src/remap.c
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/UTIL/src/remap.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/UTIL/src/remap.c -o lib/UTIL/src/remap.o
+
+Assemble: lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.s
+arm-none-eabi-gcc -c -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -I ./ -I ./inc -I ./lib/STM32F10x_StdPeriph_Driver/inc -I ./lib/STM32_USB-FS-Device_Driver/inc -I ./lib/CMSIS/Device/ST/STM32F10x/Include -I ./lib/CMSIS/Include -I ./lib/Platform -I ./lib/UTIL/inc -I ./lib/USART/inc -I ./lib/COM/inc lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.s -o lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.o
+
+Archive: stm32.a
+arm-none-eabi-ar cr stm32.a ./lib/STM32F10x_StdPeriph_Driver/src/misc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_usart.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_spi.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_flash.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_fsmc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.o ./lib/STM32F10x_StdPeriph_Driver/src/stm32f10x_exti.o ./lib/STM32_USB-FS-Device_Driver/src/usb_core.o ./lib/STM32_USB-FS-Device_Driver/src/usb_init.o ./lib/STM32_USB-FS-Device_Driver/src/usb_int.o ./lib/STM32_USB-FS-Device_Driver/src/usb_mem.o ./lib/STM32_USB-FS-Device_Driver/src/usb_regs.o ./lib/STM32_USB-FS-Device_Driver/src/usb_sil.o ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/system_stm32f10x.o ./lib/Platform/boardinit.o ./lib/USART/src/usart_config.o ./lib/COM/src/com_config.o ./lib/UTIL/src/toascii.o ./lib/UTIL/src/remap.o ./lib/CMSIS/Device/ST/STM32F10x/Source/Templates/gcc_ride7/startup_stm32f10x_hd.o    
+
+Link: main.elf
+arm-none-eabi-gcc -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd -mthumb -mlittle-endian  -mapcs-frame -mno-sched-prolog -msoft-float -std=gnu99 -gdwarf-2 -O0  -fno-strict-aliasing -fsigned-char -ffunction-sections -fdata-sections -fno-schedule-insns2 --param max-inline-insns-single=1000 -fno-common -fno-hosted -Wall -Wno-array-bounds -Wa,-adhlns=src/main.lst  -DSTM32F103VET6 -DUSE_STBEE -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DVECT_TAB_FLASH -DBARE_METAL -DPACK_STRUCT_END=__attribute\(\(packed\)\) -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) -DMPU_SUBMODEL=\"STM32F103VET6\" -DAPP_VERSION=\"Version3.4.0\" -DHSE_VALUE=12000000UL    -mcpu=cortex-m3 -mthumb -mfix-cortex-m3-ldrd -u g_pfnVectors -Wl,-static -Wl,--gc-sections -nostartfiles -Wl,-Map=main.map -L./lib/STM32F10x_StdPeriph_Driver -L./lib/STM32_USB-FS-Device_Driver -L./lib/CMSIS -L./lib/linker  -lm -T./lib/linker/STM32F10X_HD.ld src/main.o stm32.a -o main.elf
+
+
+Disassemble: main.lss
+arm-none-eabi-objdump -h -S -C main.elf > main.lss 
+
+Symbol: main.sym
+arm-none-eabi-nm -n main.elf > main.sym
+
+Objcopy: main.hex
+arm-none-eabi-objcopy -O ihex main.elf main.hex    
+
+Objcopy: main.s19
+arm-none-eabi-objcopy -O srec main.elf main.s19 
+
+Objcopy: main.bin
+arm-none-eabi-objcopy -O binary main.elf main.bin 
+
+Built Informations:
+BUILD_TYPE = BARE_METAL
+USING_DISPLAY =
+USING_DEVBOARD = USE_STBEE
+
+Size After:
+arm-none-eabi-size main.elf
+   text	   data	    bss	    dec	    hex	filename
+   5480	     20	      4	   5504	   1580	main.elf
+main.elf  :
+section             size         addr
+.text             0x1568    0x8000000
+.ctors               0x0    0x8001568
+.dtors               0x0    0x8001568
+.data               0x14   0x20000000
+.bss                 0x0   0x20000014
+.heap                0x0   0x20000014
+.stack               0x4   0x20000014
+.extram              0x0   0x68000000
+.comment            0x4c          0x0
+.debug_aranges     0x508          0x0
+.debug_info       0x3b1c          0x0
+.debug_abbrev      0xfb4          0x0
+.debug_line       0x2482          0x0
+.debug_frame      0x12b4          0x0
+.debug_str        0x15cb          0x0
+.debug_loc        0x277a          0x0
+.ARM.attributes     0x2b          0x0
+.debug_ranges      0x450          0x0
+Total             0xde9a
+
+

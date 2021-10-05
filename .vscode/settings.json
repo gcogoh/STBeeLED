@@ -1,0 +1,13 @@
+{
+    "terminal.integrated.automationShell.windows": "",
+    "terminal.integrated.env.windows": {
+        "PATH": "${env:PATH};C:\\msys64\\usr\\bin;C:\\opt\\gcc-arm-none-eabi\\bin;C:\\opt\\ocd"
+    },
+    "cortex-debug.openocdPath": "C:\\opt\\ocd\\openocd",
+    "terminal.integrated.cursorBlinking": true,
+    "astyle-format.path": "C:\\msys64\\mingw64\\bin\\astyle",
+    "astyle-format.args": "--mode=c --style=ansi --indent=spaces=4 --indent=tab=4 --indent-switches --indent-cases",
+    "astyle.cmd_options": ["--indent=tab", "--break-blocks"],
+    "uncrustify.configPath.windows": "uncrustify.cfg",
+    "uncrustify.executablePath.windows": "C:\\msys64\\mingw64\\bin\\uncrustify",
+}

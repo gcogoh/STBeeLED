@@ -1,0 +1,43 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug OpenOCD",
+            "cwd": "${workspaceRoot}",
+            "executable": "./main.elf",
+            "device": "STM32F103VE",
+            "runToMain": true,
+            "request": "launch",
+            "type": "cortex-debug",
+            //"debugServer": 3333,
+            //"openOCDPreConfigLaunchCommands": ["gdb_port 3333"],
+            //"serverArgs": ["-c", "gdb_port", "3333"],
+            //"overrideLaunchCommands": ["gdb_port", "3333"],
+            //"openOCDPreConfigLaunchCommands": [""],
+            //"openOCDLaunchCommands": ["mt_flash ./main.elf"],
+            //"gdbTarget": "remote localhost:3333",
+            //"debuggerArgs": ["-s","C:\\Tools\\ocd\\tcl"],
+            "servertype": "openocd",
+            "gdbTarget": "",
+            //"gdbTarget": "3333",
+            //"gdbTarget": ":3333",
+            //"gdbTarget": "localhost:3333",
+            "searchDir": ["C:\\Tools\\ocd\\tcl"],
+            "configFiles": [
+            //    "board/stm32f1_stbee_ngxtech.cfg"
+                "${workspaceRoot}/openocd.cfg"
+            ],
+            "svdFile": "${workspaceRoot}/.vscode/STM32F103.svd",
+            //"autorun": [
+            //    "target remote localhost:3333",
+            //    "monitor reset halt",
+            //    "load",
+            //    "thbreak main",
+            //    "continue"
+            //],
+        }
+    ]
+}

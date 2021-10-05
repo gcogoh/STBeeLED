@@ -1,0 +1,408 @@
+#################################################
+# MAKEFILE For STM32F1xxx Devices 				#
+# (c) 20111003 Nemui Trinomius					#
+# http://nemuisan.blog.bai.ne.jp				#
+#################################################
+
+# Environment Dependent!!! This Environment assure under WINDOWS !!
+# Throw path into YOUR environments
+export PATH = %SYSTEMROOT%;$(TOOLDIR)/arm-gcc/bin;$(TOOLDIR)/bin;$(OCDIR);$(DFUDIR);$(MAKEDIR)
+
+# Toolchain prefix (i.e arm-elf -> arm-elf-gcc.exe)
+TCHAIN  = arm-none-eabi
+OCD		= openocd
+OCDMODE = SWD
+#OCDMODE = JTAG
+
+# Development Tools based on GNU Compiler Collection
+DEVTOOL = LAUNCHPAD
+#DEVTOOL = YAGARTO
+#DEVTOOL = SOURCERY
+
+# Check BuildTools
+ifeq ($(DEVTOOL),LAUNCHPAD)
+ TOOLDIR = C:/Devz/ARM/Launchpad
+ REMOVAL = rm
+else ifeq ($(DEVTOOL),YAGARTO)
+ TOOLDIR = C:/Devz/ARM/Yagarto
+ REMOVAL = rm
+else ifeq ($(DEVTOOL),SOURCERY)
+ TOOLDIR = C:/Devz/ARM/Sourcery
+ REMOVAL = rm
+else
+ $(error SET BUILD-TOOLS AT FIRST!!)
+endif
+
+MAKEDIR = C:/Devz/AVR/WinAVR/utils/bin
+#MAKEDIR = C:/Devz/Coreutils/bin
+
+OCDIR	= C:/Devz/ARM/OCD
+#OCD_CMD = -s $(OCDIR)/tcl						\
+#		  -f interface/stlink-v1.cfg			\
+#		  -f target/stm32_stlink.cfg
+#ifeq ($(OCDMODE),SWD)
+OCD_CMD = -s $(OCDIR)/tcl						\
+		  -f interface/stlink-v1.cfg			\
+		  -f target/stm32f1x_stlink_flash.cfg
+#OCD_CMD = -s $(OCDIR)/tcl						\
+#		  -f interface/stlink-v1.cfg			\
+#		  -f target/stm32f2x_stlink.cfg
+#else
+#OCD_CMD = -s $(OCDIR)/tcl						\
+#		  -f interface/jtagkey2.cfg 			\
+#		  -f target/stm32f1x_flash.cfg
+#endif
+
+DFUDIR	= C:/Devz/ARM/ST/DFUse/BIN
+		  
+WSHELL  = cmd
+MSGECHO = echo.exe
+GDBDIR  = C:/Devz/ARM/insight/bin
+INSIGHT = $(GDBDIR)/arm-none-eabi-insight
+# Environment Dependent!!!
+
+# OPTIMIZE Definition
+#OPTIMIZE		= s
+OPTIMIZE		= 0
+# GCC4.6.x Specific Option
+ifneq ($(OPTIMIZE),0)
+USE_LTO			= -flto-partition=none -fipa-sra
+#USE_LTO			= -flto -fipa-sra
+endif
+#ALIGNED_ACCESS	= -mno-unaligned-access
+
+# Apprication Version
+APP_VER = Version3.4.0
+
+
+# Basic definition
+#SUBMODEL		= STM32F103RCT6
+SUBMODEL		= STM32F103ZET6
+EVAL_BOARD    	= USE_STBEE
+#MPU_DENSITY		= STM32F10X_MD
+MPU_DENSITY		= STM32F10X_HD
+# for CQ-STARM
+#HSE_CLOCK 		= 8000000
+# for STBee
+HSE_CLOCK 		= 12000000
+VECTOR_START  	= VECT_TAB_FLASH
+PERIF_DRIVER    = USE_STDPERIPH_DRIVER
+
+
+# Use FreeRTOS?
+OS_SUPPORT		= BARE_METAL
+#OS_SUPPORT		= USE_FREERTOS
+
+# Synthesis makefile Defines
+DEFZ = $(SUBMODEL)   $(EVAL_BOARD)   $(MPU_DENSITY)  $(PERIF_DRIVER)    $(VECTOR_START)    \
+	   $(OS_SUPPORT) $(USE_EXT_SRAM)
+# Defines if Display and Font Drivers
+DEFZ += $(USE_DISPLAY) $(USE_FONTSIZE) $(USE_KANJI) $(USE_TOUCH_SENCE)  $(USE_XMSTN)		\
+        $(USE_JPEG_LIB) $(USE_PNG_LIB) $(USE_GIF_LIB) 
+SYNTHESIS_DEFS	= $(addprefix -D,$(DEFZ)) 							\
+				 -DPACK_STRUCT_END=__attribute\(\(packed\)\) 		\
+				 -DALIGN_STRUCT_END=__attribute\(\(aligned\(4\)\)\) \
+				 -DMPU_SUBMODEL=\"$(SUBMODEL)\"						\
+				 -DAPP_VERSION=\"$(APP_VER)\"						\
+				 -DHSE_VALUE=$(HSE_CLOCK)UL 
+
+# TARGET definition
+TARGET = main
+TARGET_ELF  = $(TARGET).elf
+TARGET_SREC = $(TARGET).s19
+TARGET_HEX  = $(TARGET).hex
+TARGET_BIN  = $(TARGET).bin
+TARGET_LSS  = $(TARGET).lss
+TARGET_DFU  = $(TARGET).dfu
+TARGET_SYM  = $(TARGET).sym
+
+# define CMSIS LIBRARY PATH
+FWLIB  			= ./lib/STM32F10x_StdPeriph_Driver
+USBLIB 			= ./lib/STM32_USB-FS-Device_Driver
+CMSISLIB 		= ./lib/CMSIS
+CMSIS_DEVICE 	= $(CMSISLIB)/Device/ST/STM32F10x
+CMSIS_CORE		= $(CMSISLIB)/Include
+
+# include PATH
+INCPATHS	 = 	./							\
+				./inc						\
+				$(FWLIB)/inc  				\
+				$(USBLIB)/inc				\
+				$(CMSIS_DEVICE)/Include		\
+				$(CMSIS_CORE)				\
+				$(LIBINCDIRS)
+INCLUDES     = $(addprefix -I ,$(INCPATHS))
+
+# Set library PATH
+LIBPATHS     = $(FWLIB) $(USBLIB) $(CMSISLIB)
+LIBRARY_DIRS = $(addprefix -L,$(LIBPATHS))
+# if you use math-library, put "-lm" 
+MATH_LIB	 =	-lm
+
+# LinkerScript PATH
+LINKER_PATH =  ./lib/linker
+LINKER_DIRS = $(addprefix -L,$(LINKER_PATH)) 
+
+# Object definition
+OBJS 	 = $(CFILES:%.c=%.o) 
+LIBOBJS  = $(LIBCFILES:%.c=%.o) $(SFILES:%.s=%.o)
+
+# C code PATH
+SOURCE  = ./src
+CFILES = 									\
+	$(SOURCE)/$(TARGET).c 					
+#	$(SOURCE)/stm32_it.c 					\
+#	$(SOURCE)/hw_config.c 					\
+#	$(SOURCE)/dfu_mal.c 					\
+#	$(SOURCE)/nor_if.c 						\
+#	$(SOURCE)/flash_if.c 					\
+#	$(SOURCE)/fsmc_nor.c 					\
+#	$(SOURCE)/spi_if.c 						\
+#	$(SOURCE)/usb_desc.c 					\
+#	$(SOURCE)/usb_istr.c 					\
+#	$(SOURCE)/usb_prop.c 					\
+#	$(SOURCE)/usb_pwr.c
+
+#/*----- STARTUP code PATH -----*/
+STARTUP_DIR = $(CMSIS_DEVICE)/Source/Templates/gcc_ride7
+ifeq ($(OS_SUPPORT),USE_FREERTOS)
+SFILES += \
+	$(SOURCE)/startup_stm32f10x_md_rtos.s
+else ifeq ($(MPU_DENSITY),STM32F10X_MD)
+SFILES += \
+	$(STARTUP_DIR)/startup_stm32f10x_md.s
+else ifeq ($(MPU_DENSITY),STM32F10X_LD)
+SFILES += \
+	$(STARTUP_DIR)/startup_stm32f10x_ld.s
+else ifeq ($(MPU_DENSITY),STM32F10X_HD)
+SFILES += \
+	$(STARTUP_DIR)/startup_stm32f10x_hd.s
+else
+SFILES += \
+	$(STARTUP_DIR)/startup_stm32f10x_cl.s
+endif
+
+
+
+#/*----- STM32 library PATH -----*/
+LIBCFILES = \
+ $(FWLIB)/src/misc.c 						\
+ $(FWLIB)/src/stm32f10x_usart.c				\
+ $(FWLIB)/src/stm32f10x_spi.c 				\
+ $(FWLIB)/src/stm32f10x_flash.c 			\
+ $(FWLIB)/src/stm32f10x_fsmc.c 				\
+ $(FWLIB)/src/stm32f10x_gpio.c 				\
+ $(FWLIB)/src/stm32f10x_rcc.c 				\
+ $(FWLIB)/src/stm32f10x_exti.c 				\
+ $(USBLIB)/src/usb_core.c 					\
+ $(USBLIB)/src/usb_init.c 					\
+ $(USBLIB)/src/usb_int.c 					\
+ $(USBLIB)/src/usb_mem.c 					\
+ $(USBLIB)/src/usb_regs.c 					\
+ $(USBLIB)/src/usb_sil.c
+ 
+LIBCFILES += \
+ $(CMSIS_DEVICE)/Source/Templates/system_stm32f10x.c
+
+EVALIB = ./lib/STM32_EVAL
+ifeq ($(EVAL_BOARD),USE_STM3210C_EVAL)
+STM3210LIB = $(EVALIB)/STM3210C_EVAL
+LIBCFILES += \
+	$(STM3210LIB)/stm3210c_eval.c			\
+	$(STM3210LIB)/stm3210c_eval_spi_flash.c
+else ifeq ($(EVAL_BOARD),USE_STM3210E_EVAL)
+STM3210LIB = $(EVALIB)/STM3210E_EVAL
+LIBCFILES += \
+	$(STM3210LIB)/stm3210e_eval.c			\
+	$(STM3210LIB)/stm3210e_eval_spi_flash.c
+else ifeq ($(EVAL_BOARD),USE_STM3210B_EVAL)
+STM3210LIB = $(EVALIB)/STM3210B_EVAL
+LIBCFILES += \
+	$(STM3210LIB)/stm3210b_eval.c			\
+	$(STM3210LIB)/stm3210b_eval_spi_flash.c
+else
+PLATFORM = ./lib/Platform
+USART = ./lib/USART
+COM = ./lib/COM
+UTIL = ./lib/UTIL
+LIBCFILES += \
+	$(PLATFORM)/boardinit.c 				\
+	$(USART)/src/usart_config.c				\
+	$(COM)/src/com_config.c 				\
+	$(UTIL)/src/toascii.c					\
+	$(UTIL)/src/remap.c
+endif
+
+#LIBINCDIRS   += $(EVALIB)			\
+#				$(EVALIB)/Common	\
+#				$(STM3210LIB)
+LIBINCDIRS   += $(PLATFORM)			\
+				$(UTIL)/inc			\
+				$(USART)/inc		\
+				$(COM)/inc
+
+# TOOLCHAIN SETTING
+CC 			= $(TCHAIN)-gcc
+CPP 		= $(TCHAIN)-g++
+OBJCOPY 	= $(TCHAIN)-objcopy
+OBJDUMP 	= $(TCHAIN)-objdump
+SIZE 		= $(TCHAIN)-size
+AR 			= $(TCHAIN)-ar
+LD 			= $(TCHAIN)-gcc
+NM 			= $(TCHAIN)-nm
+REMOVE		= $(REMOVAL) -f
+REMOVEDIR 	= $(REMOVAL) -rf
+
+# C and ASM FLAGS
+CFLAGS  = -MD -mcpu=cortex-m3 -mtune=cortex-m3 -mfix-cortex-m3-ldrd
+CFLAGS += -mthumb -mlittle-endian $(ALIGNED_ACCESS)
+CFLAGS += -mapcs-frame -mno-sched-prolog -msoft-float
+CFLAGS += -std=gnu99
+CFLAGS += -gdwarf-2 -O$(OPTIMIZE) $(USE_LTO)
+CFLAGS += -fno-strict-aliasing -fsigned-char
+CFLAGS += -ffunction-sections -fdata-sections
+CFLAGS += -fno-schedule-insns2
+CFLAGS += --param max-inline-insns-single=1000
+CFLAGS += -fno-common -fno-hosted
+CFLAGS += -Wall -Wno-array-bounds
+#CFLAGS += -Wdouble-promotion
+#CFLAGS += -Wredundant-decls -Wreturn-type -Wshadow -Wunused
+CFLAGS += -Wa,-adhlns=$(subst $(suffix $<),.lst,$<) 
+CFLAGS += $(SYNTHESIS_DEFS)  
+
+# Linker FLAGS
+LDFLAGS  = -mcpu=cortex-m3 -mthumb -mfix-cortex-m3-ldrd
+LDFLAGS += -u g_pfnVectors -Wl,-static -Wl,--gc-sections -nostartfiles
+LDFLAGS += -Wl,-Map=$(TARGET).map
+LDFLAGS += $(LIBRARY_DIRS) $(LINKER_DIRS) $(MATH_LIB)
+LDFLAGS +=-T$(LINKER_PATH)/$(MPU_DENSITY).ld
+
+# Object Copy and dfu generation FLAGS
+OBJCPFLAGS = -O
+OBJDUMPFLAGS = -h -S -C
+DFU	  = hex2dfu
+DFLAGS = -w
+
+
+# Build Object
+all: gccversion clean build buildinform sizeafter
+build: $(TARGET_ELF) $(TARGET_LSS) $(TARGET_SYM) $(TARGET_HEX) $(TARGET_SREC) $(TARGET_BIN)
+
+.SUFFIXES: .o .c .s   
+
+$(TARGET_LSS): $(TARGET_ELF)
+	@$(MSGECHO)
+	@$(MSGECHO) Disassemble: $@
+	$(OBJDUMP) $(OBJDUMPFLAGS) $< > $@ 
+$(TARGET_SYM): $(TARGET_ELF)
+	@$(MSGECHO)
+	@$(MSGECHO) Symbol: $@
+	$(NM) -n $< > $@
+$(TARGET).hex: $(TARGET).elf
+	@$(MSGECHO)
+	@$(MSGECHO) Objcopy: $@
+	$(OBJCOPY) $(OBJCPFLAGS) ihex $^ $@    
+$(TARGET).s19: $(TARGET).elf
+	@$(MSGECHO)
+	@$(MSGECHO) Objcopy: $@
+	$(OBJCOPY) $(OBJCPFLAGS) srec $^ $@ 
+$(TARGET).bin: $(TARGET).elf
+	@$(MSGECHO)
+	@$(MSGECHO) Objcopy: $@
+	$(OBJCOPY) $(OBJCPFLAGS) binary $< $@ 
+$(TARGET).dfu: $(TARGET).hex
+	@$(MSGECHO)
+	@$(MSGECHO) Make STM32 dfu: $@
+	$(DFU) $(DFLAGS) $< $@
+	@$(MSGECHO)
+$(TARGET).elf: $(OBJS) stm32.a
+	@$(MSGECHO) Link: $@
+	$(LD) $(CFLAGS) $(LDFLAGS) $^ -o $@
+	@$(MSGECHO)
+
+stm32.a: $(LIBOBJS)
+	@$(MSGECHO) Archive: $@
+	$(AR) cr $@ $(LIBOBJS)    
+	@$(MSGECHO)
+.c.o:
+	@$(MSGECHO) Compile: $<
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+	@$(MSGECHO)
+.s.o:
+	@$(MSGECHO) Assemble: $<
+	$(CC) -c $(CFLAGS) $(INCLUDES) $< -o $@
+	@$(MSGECHO)
+
+# Object Size Infomations
+ELFSIZE = $(SIZE) -A -x $(TARGET).elf
+sizeafter:
+	@$(MSGECHO) 
+	@$(MSGECHO) Size After:
+	$(SIZE) $(TARGET).elf
+	@$(SIZE) -A -x $(TARGET).elf
+	
+# Display compiler version information.
+gccversion : 
+	@$(CC) --version
+	@$(MSGECHO) 
+
+buildinform :
+	@$(MSGECHO) 
+	@$(MSGECHO) Built Informations:
+	@$(MSGECHO) BUILD_TYPE     = $(OS_SUPPORT)
+	@$(MSGECHO) USING_DISPLAY  = $(USE_DISPLAY)
+	@$(MSGECHO) USING_DEVBOARD = $(EVAL_BOARD)
+
+# Flash and Debug Program
+debug :
+	$(WSHELL) /c start /B $(INSIGHT) $(TARGET).elf
+	$(OCD) $(OCD_CMD) -c "soft_reset_halt"
+program :
+	$(OCD) $(OCD_CMD) -c "mt_flash $(TARGET).elf"
+#	$(OCD) $(OCD_CMD) -c "eraser"
+#	$(OCD) $(OCD_CMD) -c "mt_flash_bin $(TARGET).bin 0x08000000"
+
+
+# Drop files into dust-shoot
+.PHONY clean:
+	$(REMOVE) $(TARGET).hex
+	$(REMOVE) $(TARGET).bin
+	$(REMOVE) $(TARGET).obj
+	$(REMOVE) stm32.a
+	$(REMOVE) $(TARGET).elf
+	$(REMOVE) $(TARGET).map
+	$(REMOVE) $(TARGET).s19
+	$(REMOVE) $(TARGET).obj
+	$(REMOVE) $(TARGET).a90
+	$(REMOVE) $(TARGET).sym
+	$(REMOVE) $(TARGET).lnk
+	$(REMOVE) $(TARGET).lss
+	$(REMOVE) $(TARGET).dfu
+	$(REMOVE) $(wildcard *.stackdump)
+	$(REMOVE) $(OBJS)
+	$(REMOVE) $(AOBJ)
+	$(REMOVE) $(LIBOBJS)
+	$(REMOVE) $(LST)
+	$(REMOVE) $(CFILES:.c=.lst)
+	$(REMOVE) $(CFILES:.c=.d)
+	$(REMOVE) $(LIBCFILES:.c=.lst)
+	$(REMOVE) $(LIBCFILES:.c=.d)
+	$(REMOVE) $(SFILES:.s=.lst)
+	$(REMOVE) $(wildcard ./lib/IOView/*.d)
+	$(REMOVE) $(wildcard ./lib/IOView/*.lst)
+	$(REMOVE) $(wildcard ./lib/IOView/*.o)
+	$(REMOVE) $(wildcard $(DISPLAY_DRV_SRC)/*.d)
+	$(REMOVE) $(wildcard $(DISPLAY_DRV_SRC)/*.lst)
+	$(REMOVE) $(wildcard $(DISPLAY_DRV_SRC)/*.o)
+	$(REMOVE) $(wildcard $(FATFS)/*.d)
+	$(REMOVE) $(wildcard $(FATFS)/*.lst)
+	$(REMOVE) $(wildcard $(FATFS)/*.o)
+	$(REMOVE) $(wildcard $(CMSIS_DEVICE)/*.d)
+	$(REMOVE) $(wildcard $(CMSIS_DEVICE)/*.lst)
+	$(REMOVE) $(wildcard $(CMSIS_DEVICE)/*.o)
+	$(REMOVEDIR) .dep
+	@$(MSGECHO)
+
+# Listing of phony targets.
+.PHONY : all begin finish end sizebefore sizeafter gccversion \
+build elf hex bin lss sym clean clean_list program

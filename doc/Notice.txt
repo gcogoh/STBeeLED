@@ -1,0 +1,18 @@
+DeviceFirmwareUpdate Class Demo for CQ-STARM JUNKBOARD
+reset vector 0x08000000 start !
+
+//nemuisan senyou copipe template
+	//20090511Nemui
+	#ifdef  VECT_TAB_RAM  
+	  /* Set the Vector Table base location at 0x20000000 */ 
+	  NVIC_SetVectorTable(NVIC_VectTab_RAM, 0x0); 
+	#else  /* VECT_TAB_FLASH  */
+	  /* Set the Vector Table base address at 0x08000000 */
+	  #ifdef  EXEC_ORG
+	  NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x0000);
+	  #else
+	  NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x3000);
+	  #endif
+	#endif
+//20090511Nemui
+    
